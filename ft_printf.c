@@ -6,58 +6,58 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:53:21 by yachebla          #+#    #+#             */
-/*   Updated: 2023/03/17 17:40:12 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/03/18 13:59:08 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print(char format, va_list ptr)
+void	print(char str, va_list p)
 {
-	if (format == '%')
+	if (str == '%')
 		print_putchar('%');
-	if (format == 'c')
-		print_putchar(va_arg(ptr, int));
-	if (format == 's')
-		print_putstr(va_arg(ptr, char *));
-	if (format == 'd' || format == 'i')
-		print_putnbr(va_arg(ptr, int));
-	if (format == 'u')
-		print_putnbr(va_arg(ptr, unsigned int));
-	if (format == 'x')
-		print_hexa(va_arg(ptr, unsigned int), 'l');
-	if (format == 'X')
-		print_hexa(va_arg(ptr, unsigned int), 'u');
-	if (format == 'p')
+	if (str == 'c')
+		print_putchar(va_arg(p, int));
+	if (str == 's')
+		print_putstr(va_arg(p, char *));
+	if (str == 'd' || str == 'i')
+		print_putnbr(va_arg(p, int));
+	if (str == 'u')
+		print_putnbr(va_arg(p, unsigned int));
+	if (str == 'x')
+		print_hexa(va_arg(p, unsigned int), 'l');
+	if (str == 'X')
+		print_hexa(va_arg(p, unsigned int), 'u');
+	if (str == 'p')
 	{
 		print_putstr("0x");
-		print_hexa(va_arg(ptr, unsigned long), 'l');
+		print_hexa(va_arg(p, unsigned long), 'l');
 	}
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_printf(const char *str, ...)
 {
 	int		i;
-	va_list	ptr;
+	va_list	p;
 
 	i = 0;
-	va_start(ptr, format);
+	va_start(p, str);
 	g_r = 0;
-	while (format[i])
+	while (str[i])
 	{
-		if (format[i] == '%')
+		if (str[i] == '%')
 		{
 			i++;
-			if (format[i] == '\0')
+			if (str[i] == '\0')
 				return (g_r);
-			print(format[i], ptr);
+			print(str[i], p);
 		}
-		else if (format[i] == '\n')
+		else if (str[i] == '\n')
 			print_putchar('\n');
 		else
-			print_putchar(format[i]);
+			print_putchar(str[i]);
 		i++;
 	}
-	va_end(ptr);
+	va_end(p);
 	return (g_r);
 }

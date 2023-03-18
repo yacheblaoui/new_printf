@@ -6,19 +6,17 @@
 #    By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 12:53:34 by yachebla          #+#    #+#              #
-#    Updated: 2023/03/17 17:39:45 by yachebla         ###   ########.fr        #
+#    Updated: 2023/03/18 14:05:24 by yachebla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-CFLAGS = -Wall -Wextra -Werror
-
 CC = cc
 
+CFLAGS = -Wall -Wextra -Werror
+
 HEADER = ft_printf.h
-
-
 
 FILES = ft_printf.c ft_printf_utils.c
 
