@@ -6,13 +6,11 @@
 #    By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 12:53:34 by yachebla          #+#    #+#              #
-#    Updated: 2023/03/18 14:05:24 by yachebla         ###   ########.fr        #
+#    Updated: 2023/03/20 12:01:59 by yachebla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-
-CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -23,11 +21,11 @@ FILES = ft_printf.c ft_printf_utils.c
  OBJ = $(FILES:.c=.o)
  
  all: $(NAME)
- $(NAME): $(HEADER) $(OBJ)
+ $(NAME): $(OBJ)
 		ar src  $(NAME) $(OBJ)
 
-%.o: %.c ft_printf.h
-	$(CC) ${CFLAGS} $< -o $@ -c
+%.o: %.c $(HEADER)
+	$(CC) ${CFLAGS} -c $< -o $@ 
 	
 clean: 
 	rm -rf $(OBJ)

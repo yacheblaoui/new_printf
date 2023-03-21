@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:53:21 by yachebla          #+#    #+#             */
-/*   Updated: 2023/03/18 13:59:08 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/03/20 12:33:04 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,25 @@ void	print(char str, va_list p)
 {
 	if (str == '%')
 		print_putchar('%');
-	if (str == 'c')
+	else if (str == 'c')
 		print_putchar(va_arg(p, int));
-	if (str == 's')
+	else if (str == 's')
 		print_putstr(va_arg(p, char *));
-	if (str == 'd' || str == 'i')
+	else if (str == 'd' || str == 'i')
 		print_putnbr(va_arg(p, int));
-	if (str == 'u')
+	else if (str == 'u')
 		print_putnbr(va_arg(p, unsigned int));
-	if (str == 'x')
+	else if (str == 'x')
 		print_hexa(va_arg(p, unsigned int), 'l');
-	if (str == 'X')
+	else if (str == 'X')
 		print_hexa(va_arg(p, unsigned int), 'u');
-	if (str == 'p')
+	else if (str == 'p')
 	{
 		print_putstr("0x");
 		print_hexa(va_arg(p, unsigned long), 'l');
 	}
+	else
+		print_putchar(str);
 }
 
 int	ft_printf(const char *str, ...)
